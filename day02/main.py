@@ -26,10 +26,27 @@ def validate(parsed: Any) -> bool:
     c = counts[parsed['letter']]
     return c >= parsed['low'] and c <= parsed['high']
 
+
+def validate_occurance(parsed: Any) -> bool:
+    a = parsed['low']
+    b = parsed['high']
+    l = parsed['letter']
+    p = parsed['pw']
+    if l not in p:
+        return False
+    score = 0
+    if p[a-1] == l:
+        score += 1
+    if p[b-1] == l:
+        score += 1
+    breakpoint()
+    return score == 1
+
+
 def main():
     print("ok")
     inputs = open('input.txt', 'r').read().splitlines()
-    valid = [validate(parse(l)) for l in inputs]
+    valid = [validate_occurance(parse(l)) for l in inputs]
     c = 0
     for v in valid:
         if v:

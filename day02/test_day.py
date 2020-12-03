@@ -1,6 +1,6 @@
 import pytest
 
-from main import parse, validate
+from main import parse, validate, validate_occurance
 
 
 def test_parse():
@@ -15,3 +15,10 @@ def test_validate():
     assert validate(parse("2-9 c: ccccccccc"))
     assert not validate(parse("2-9 c: cccccccccccc"))
     assert not validate(parse("8-9 f: ffqfffflf"))
+
+def test_validate_occurance():
+    assert validate_occurance(parse("1-3 a: abcde"))
+    assert not validate_occurance(parse("1-3 b: cdefg"))
+    assert validate_occurance(parse("1-3 e: cdefg"))
+    assert not validate_occurance(parse("2-9 c: ccccccccc"))
+    assert not validate_occurance(parse("2-10 c: ccccccccc"))
