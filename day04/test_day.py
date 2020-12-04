@@ -28,6 +28,8 @@ ecl:brn hgt:182cm pid:021572410 eyr:2020 byr:1992 cid:277
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:00000000
 
+iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:0000000000
+
 hgt:59cm ecl:zzz
 eyr:2038 hcl:74454a iyr:2023
 pid:3556412378 byr:2007"""
