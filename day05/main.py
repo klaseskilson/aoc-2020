@@ -1,35 +1,29 @@
 from math import floor, ceil
 
 
-def search(instr: str, ranges: [int]) -> int:
-    lo, hi = ranges
-    for r in instr:
-        d = hi - lo
-        if r in "BR":
-            lo = ceil(lo + (d / 2))
-        else:
-            hi = floor(hi - (d / 2))
-    return lo
+def from_bin(s: str, z: str, o: str) -> int:
+    return int(s.replace(z, "0").replace(o, "1"), 2)
 
 
 def get_seat(boarding_pass: str) -> int:
-    row = search(boarding_pass[:6], [0, 127])
-    col = search(boarding_pass[7:], [0, 7])
+    row = from_bin(boarding_pass[:7], z="F", o="B")
+    col = from_bin(boarding_pass[7:], z="L", o="R")
     return row * 8 + col
 
 
 def main():
-    seats = [get_seat(str(s)) for s in open("input.txt", "r").read().splitlines()]
+    boardings = [str(s) for s in open("input.txt", "r").read().splitlines()]
+    seats = [get_seat(str(s)) for s in boardings]
     print("part 1", max(seats))
 
     seats.sort()
-    potential =  seats[8:-8]
     i = 8
-    for seat in potential:
-        print(i, seat, seats[i+1], seats[i+1] - seat)
-        if seats[i+1] - seat == 2:
+    for seat in seats[8:-7]:
+        # print(i, seat, seats[i + 1], seat + 1)
+        # if seats[i + 1] != seat + 1:
+        if seat + 1 not in seats:
             print("omg", seat)
-        i+=1
+        i += 1
 
 
 if __name__ == "__main__":

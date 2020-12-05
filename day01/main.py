@@ -19,17 +19,18 @@ def scan3d(entries: List[int]) -> List[int]:
 
 
 def get_numbers(name: str) -> List[int]:
-    inputs = open(name, 'r')
+    inputs = open(name, "r")
     return list(map(int, inputs.read().splitlines()))
 
+
 def main1():
-    entries = get_numbers('input.txt')
+    entries = get_numbers("input.txt")
     a, b = scan2d(entries)
     print(a * b)
 
 
 def main2():
-    entries = get_numbers('input.txt')
+    entries = get_numbers("input.txt")
     a, b, c = scan3d(entries)
     print(a * b * c)
 

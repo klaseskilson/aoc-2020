@@ -10,11 +10,15 @@ def validate(passport: str) -> bool:
 
 def year(passport: str, key: str, limits: [int]) -> bool:
     m = re.search(f"{key}:(\d+)", passport)
-    return m is not None and (int(m.group(1)) >= limits[0] and int(m.group(1)) <= limits[1])
+    return m is not None and (
+        int(m.group(1)) >= limits[0] and int(m.group(1)) <= limits[1]
+    )
+
 
 def p(a):
     # print(a)
     return None
+
 
 def moar_validate(passport: str) -> bool:
     if not year(passport, "byr", [1920, 2002]):
@@ -42,9 +46,8 @@ def moar_validate(passport: str) -> bool:
         p("hair")
         return False
     eye = re.search(r"ecl:(\w+)", passport)
-    if not eye or eye.group(1) not in 'amb blu brn gry grn hzl oth':
+    if not eye or eye.group(1) not in "amb blu brn gry grn hzl oth":
         # print("invalid", eye and eye.groups(), passport)
-        p("eye")
         return False
     nr = re.search(r"pid:\d{9}(\s|$)", passport)
     if not nr:
