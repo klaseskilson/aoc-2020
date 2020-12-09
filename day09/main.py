@@ -9,7 +9,6 @@ def calc(inp: [int]) -> int:
     curr = inp[:25]
     rest = inp[25:]
     for i in rest:
-        print(i)
         assert len(curr) == 25
         if not test(curr, i):
             return i
@@ -20,20 +19,16 @@ def calc(inp: [int]) -> int:
 def main():
     inp = open("input.txt", "r").read().splitlines()
     num = [int(n) for n in inp]
-    print("part 1", calc(num))
+    p1 = calc(num)
+    print("part 1", p1)
 
-    # ## part 2
-    # for i in range(len(instr)):
-    #     cmd, _val = instr[i]
-    #     cp = [ele[:] for ele in instr]
-    #     if cmd == 'nop':
-    #         cp[i][0] = 'jmp'
-    #     elif cmd == 'jmp':
-    #         cp[i][0] = 'nop'
-    #     f, s = calc(cp)
-    #     if s:
-    #         print("part 2", f, s, i, cmd)
-    #         break
+    ## part 2
+    for w in range(2, len(num)):
+        for i in range(len(num)):
+            sub = num[i:i+w]
+            len(sub)
+            if sum(sub) == p1:
+                print("part 2", min(sub), max(sub), min(sub) + max(sub), sub)
 
 
 if __name__ == "__main__":
